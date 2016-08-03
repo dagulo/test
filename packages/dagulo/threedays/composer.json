@@ -1,0 +1,7 @@
+{
+    "name": "dagulo/threedays",
+    "description": "Three days processing monitoring web application",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {}
+}
