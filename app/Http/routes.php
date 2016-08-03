@@ -12,5 +12,7 @@
 */
 
 Route::get( '/', 'LoginController@login' );
+Route::get( 'employee', 'EmployeesController@index' )
+ ->middleware( 'auth' );
 
-Route::get( '/', 'EmployeesController@index' );
+

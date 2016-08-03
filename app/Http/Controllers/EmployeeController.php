@@ -8,8 +8,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employees\Employees;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Employees;
+use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
@@ -33,22 +33,27 @@ class EmployeeController extends Controller
             'position' => 'required'
         );
 
-        $validator = Validator::make( $r->all() );
-
-        if( $validator->fails()){
-            return redirect('employee/new')
-                ->withErrors( $validator )
-                ->withInput();
-        }
-
-        // create a user account for employe
-
         $employee = new Employees();
-        $employee->position = $r->position;
-        $employee->save();
+
+        if( ! $employee->store( $r  ) ){
+            return redirect('employee')
+                ->with( 'error' , $employee->getErrors() );
+        }
 
         return redirect('employee/index')
             ->withInput();
+    }
+
+    public function delete( Request $r )
+    {
+        if( ! $e = Employees::find( $r->employee_id ) ){
+            return redirect('employee')
+                ->with( 'error' , 'Employee for deletion not found' );
+        }
+
+        $e->delete();
+
+        return redirect( 'employee/index' );
     }
 
 }
