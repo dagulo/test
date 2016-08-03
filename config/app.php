@@ -156,8 +156,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Dagulo\Threedays\ThreedaysServiceProvider::class
-
     ],
 
     /*

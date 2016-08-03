@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', '\Dagulo\Threedays\TdaysFrontController@index');
+Route::get( '/', 'LoginController@login' );
+
+Route::get( '/', 'EmployeesController@index' );
